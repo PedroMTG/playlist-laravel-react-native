@@ -60,9 +60,18 @@ class MusicaController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        $musica = Musica::findOrFail($id);
-        $musica->update($request->all());
+    {    
+         try{
+            $musica = Musica::findOrFail($id);
+            $musica->update($request->all());
+        }catch(\Exception $e){
+            return response()->json([
+                'success'=>false,
+                'error'=>$e->getMessage(),
+                'file'    => $e->getFile(),
+            'line'    => $e->getLine()
+            ],500);
+        }
     }
 
     /**
