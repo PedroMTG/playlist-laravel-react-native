@@ -67,9 +67,7 @@ class MusicaController extends Controller
         }catch(\Exception $e){
             return response()->json([
                 'success'=>false,
-                'error'=>$e->getMessage(),
-                'file'    => $e->getFile(),
-            'line'    => $e->getLine()
+                'error'=>$e->getMessage()
             ],500);
         }
     }
